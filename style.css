@@ -1,0 +1,140 @@
+:root {
+    --primary-color: #00cec9;
+    --secondary-color: #0984e3;
+    --bg-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Desain Kartu Glassmorphism Maskulin */
+.card {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.card.open {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    text-align: center;
+    color: #fff;
+}
+
+/* Bagian Depan Kartu */
+.card-front .cake {
+    font-size: 75px;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.card-front h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #00cec9, #74b9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-front .tap-hint {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+/* Bagian Dalam Kartu */
+.card-inside {
+    transform: rotateY(180deg);
+    justify-content: space-around;
+}
+
+.card-inside h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.card-inside p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+#btnSurprise {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 206, 201, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#btnSurprise:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 206, 201, 0.5);
+}
+
+/* Animasi Elemen Confetti / Balon */
+.confetti {
+    position: absolute;
+    bottom: -50px;
+    opacity: 0.9;
+    animation: floatUp 5s linear infinite;
+}
+
+/* Keyframes */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
